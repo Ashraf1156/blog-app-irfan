@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Best Practices -->
+  <title>DevBlog - Tech & Coding Articles styled like YouTube</title>
+  <meta name="description" content="A premium markdown-based developer blog platform structured exactly like YouTube's homepage. Read technical tutorials, design insights, and AI agent guides.">
+  <meta name="keywords" content="blog, programming, web development, nextjs, css, glassmorphism, ai agents, markdown, youtube UI">
+  <meta name="author" content="Ashraf - Dev">
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Prism CSS Theme for Code Blocks (Dark Tomorrow theme default) -->
+  <link id="prism-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css?v=8">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="main-header" id="main-header">
+    <div class="header-left">
+      <button class="icon-btn menu-toggle-btn" id="sidebar-toggle" aria-label="Toggle Sidebar">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="#home" class="logo-container" id="logo-home-link">
+        <div class="logo-icon">
+          <i class="fa-brands fa-youtube"></i>
+        </div>
+        <span class="logo-text">DevBlog</span>
+      </a>
+    </div>
+    
+    <div class="header-center">
+      <div class="search-bar-container">
+        <input type="text" placeholder="Search blog posts..." class="search-input" id="search-bar" aria-label="Search posts">
+        <button class="search-btn" id="search-submit" aria-label="Submit search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <button class="icon-btn theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+
+    <!-- Relocated Global Progress Bar -->
+    <div class="header-progress-container">
+      <div class="header-progress-bar" id="reading-progress"></div>
+    </div>
+  </header>
+
+  <!-- Shell Layout -->
+  <div class="app-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <a href="#home" class="sidebar-item active" id="side-nav-home">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+        <a href="#library" class="sidebar-item" id="side-nav-library">
+          <i class="fa-solid fa-rectangle-list"></i>
+          <span>Library</span>
+        </a>
+        <a href="#liked" class="sidebar-item" id="side-nav-liked">
+          <i class="fa-solid fa-thumbs-up"></i>
+          <span>Liked blogs</span>
+        </a>
+      </div>
+      
+      <footer class="sidebar-footer">
+        <p>© 2026 DevBlog LLC</p>
+      </footer>
+    </aside>
+
+    <!-- Main Content Workspace -->
+    <main class="main-content" id="main-content">
+      
+      <!-- Home View Container -->
+      <section class="view-container active" id="home-view">
+        
+        <!-- Category Filter Chips -->
+        <div class="chips-container" id="chips-container">
+          <!-- Dynamically populated via app.js -->
+        </div>
+        
+        <!-- Search Info Panel (Shows when filtering is active) -->
+        <div class="search-info" id="search-info-bar" style="display: none;">
+          <span class="search-info-text" id="search-info-text">Showing results for ""</span>
+          <button class="clear-filter-btn" id="clear-search-btn">Clear search</button>
+        </div>
+        
+        <!-- Blog Cards Grid -->
+        <h1 class="main-feed-title" id="feed-heading">Explore Blog Posts</h1>
+        <div class="blog-grid" id="blog-grid">
+          <!-- Dynamically populated via app.js -->
+        </div>
+        
+        <!-- Pagination Bar -->
+        <div class="pagination-bar" id="pagination-bar" style="display: none;"></div>
+      </section>
+
+      <!-- Library (Categories as Playlists) View Container -->
+      <section class="view-container" id="library-view" style="display: none;">
+        <h1 class="main-feed-title">Library</h1>
+        <div class="library-section">
+          <h2 class="library-subtitle"><i class="fa-solid fa-list-ul"></i> Categories as Playlists</h2>
+          <div class="playlist-grid" id="playlist-grid">
+            <!-- Dynamically populated via app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Liked Blogs View Container -->
+      <section class="view-container" id="liked-view" style="display: none;">
+        <div class="liked-layout-wrapper">
+          <!-- Left side: Playlist details card -->
+          <div class="liked-sidebar-panel">
+            <div class="liked-playlist-hero">
+              <div class="liked-playlist-blur-bg" id="liked-playlist-blur"></div>
+              <div class="liked-playlist-card-inner">
+                <div class="liked-playlist-thumbnail">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                </div>
+                <h1 class="liked-playlist-title">Liked Blogs</h1>
+                <span class="liked-playlist-author">Ashraf - Dev</span>
+                <div class="liked-playlist-meta">
+                  <span id="liked-count-badge">0 blogs</span>
+                  <span class="dot-separator">•</span>
+                  <span>Updated today</span>
+                </div>
+                <button class="playlist-action-play" id="read-first-liked-btn">
+                  <i class="fa-solid fa-book-open"></i> Read First
+                </button>
+                <div class="liked-cache-caution">
+                  <i class="fa-solid fa-circle-info"></i>
+                  <span>Caution: Your liked blogs are stored in your browser's local cache. Clearing your browser cache or site data will remove them.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right side: Liked posts rows -->
+          <div class="liked-rows-container">
+            <h1 class="liked-feed-title">Liked Articles</h1>
+            <div class="liked-rows-list" id="liked-rows-list">
+              <!-- Dynamically populated via app.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Minimal Blog Reader View Container -->
+      <section class="view-container" id="reader-view" style="display: none;">
+        <!-- Top Sticky Back Navigation (No progress bar here) -->
+        <div class="reader-nav-header">
+          <a href="#home" class="back-home-btn" id="back-home-link" aria-label="Go back to home">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Back to Home</span>
+          </a>
+        </div>
+
+        <div class="reader-wrapper">
+          <!-- Main Blog Content Pane -->
+          <article class="blog-article-container">
+            <header class="article-header">
+              <!-- Post Category Badge -->
+              <span class="category-badge" id="reader-category">Design</span>
+              
+              <!-- Dynamic H1 Page Title -->
+              <h1 class="article-title" id="reader-title">Blog Title Loading...</h1>
+              
+              <!-- Author & Post Stats block (Like YouTube channel info bar, no subscription elements) -->
+              <div class="article-meta-bar">
+                <div class="meta-left">
+                  <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Alex" alt="Author avatar" class="author-avatar" id="reader-author-avatar">
+                  <div class="author-details">
+                    <span class="author-name" id="reader-author-name">Alex Dev</span>
+                  </div>
+                </div>
+                
+                <div class="meta-right">
+                  <button class="meta-action-btn" id="like-post-btn" aria-label="Like post">
+                    <i class="fa-regular fa-thumbs-up"></i>
+                    <span id="like-count">128</span>
+                  </button>
+                  <button class="meta-action-btn" id="share-post-btn" aria-label="Share post">
+                    <i class="fa-solid fa-share"></i>
+                    <span>Share</span>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Stats summary -->
+              <div class="post-stats-banner">
+                <span id="reader-reads-count">1,240 reads</span>
+                <span class="separator">•</span>
+                <span id="reader-publish-date">June 28, 2026</span>
+                <span class="separator">•</span>
+                <span id="reader-reading-time">5 min read</span>
+              </div>
+            </header>
+            
+            <!-- Rendered Markdown Body -->
+            <div class="markdown-body prose" id="reader-content">
+              <!-- Dynamic markdown goes here -->
+            </div>
+          </article>
+
+          <!-- YouTube-like Sidebar (Next/Related posts) -->
+          <aside class="related-posts-sidebar">
+            <h2 class="related-sidebar-title">Related Posts</h2>
+            <div class="related-list" id="related-posts-list">
+              <!-- Dynamically populated via app.js -->
+            </div>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- CDN scripts -->
+  <!-- Marked.js (Markdown parser) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <!-- Prism.js (Syntax Highlighter) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+  
+  <!-- Application Logic -->
+  <script src="app.js?v=8"></script>
+</body>
+</html>

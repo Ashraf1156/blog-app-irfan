@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "slug": "mastering-css-glassmorphism",
+    "title": "Mastering CSS Glassmorphism: Building Premium Web Interfaces",
+    "thumbnail": "assets/thumbnails/glassmorphism.png",
+    "file": "blogs/mastering-css-glassmorphism.md"
+  },
+  {
+    "id": "2",
+    "slug": "rise-of-ai-agents",
+    "title": "The Rise of AI Agents: Moving Beyond the Chatbot",
+    "thumbnail": "assets/thumbnails/ai-agents.png",
+    "file": "blogs/rise-of-ai-agents.md"
+  },
+  {
+    "id": "3",
+    "slug": "getting-started-with-nextjs",
+    "title": "Getting Started with Next.js: The Modern React Framework",
+    "thumbnail": "assets/thumbnails/nextjs.png",
+    "file": "blogs/getting-started-with-nextjs.md"
+  },
+  {
+    "id": "4",
+    "slug": "testing-guide-forge",
+    "title": "Testing Guide-Forge: Workflow Guide",
+    "thumbnail": "assets/thumbnails/glassmorphism.png",
+    "file": "blogs/testing-guide-forge.md"
+  }
+]
